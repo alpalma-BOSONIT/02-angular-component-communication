@@ -1,0 +1,14 @@
+<section class="container parent">
+  <div class="row">
+    <h1>Parent</h1>
+    <h2>Message: {{ messageFromChild | uppercase }}</h2>
+  </div>
+  <div class="row parent__buttons">
+    <button>Use Service</button><button (click)="setMessage()">Use input</button
+    ><button>Use Observable</button>
+  </div>
+  <app-child
+    [messageFromParent]="message"
+    (onChildSendMessage)="setMessageFromChild($event)"
+  ></app-child>
+</section>
