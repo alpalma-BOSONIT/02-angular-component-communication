@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MyServiceService {
   private _parentMessage: string = '';
   private _childMessage: string = '';
@@ -15,11 +13,11 @@ export class MyServiceService {
     return this._childMessage;
   }
 
-  setParentMessage(): void {
-    this._parentMessage = 'child is using services';
+  setParentMessage(msg: string): void {
+    this._parentMessage = msg;
   }
 
-  setChildMessage(): void {
-    this._childMessage = 'parent is using services';
+  setChildMessage(msg: string): void {
+    this._childMessage = msg;
   }
 }
