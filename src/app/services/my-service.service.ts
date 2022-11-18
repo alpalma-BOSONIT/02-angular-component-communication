@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MyServiceService {
   private _parentMessage: string = '';
   private _childMessage: string = '';

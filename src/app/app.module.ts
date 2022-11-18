@@ -9,7 +9,7 @@ import { MyServiceService } from './services/my-service.service';
 @NgModule({
   declarations: [AppComponent, ParentComponent, ChildComponent],
   imports: [BrowserModule],
-  providers: [MyServiceService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
