@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyServiceService } from 'src/app/services/my-service.service';
+import { ObservablesService } from 'src/app/services/observables.service';
 
 @Component({
   selector: 'app-parent',
@@ -9,14 +10,22 @@ import { MyServiceService } from 'src/app/services/my-service.service';
 export class ParentComponent implements OnInit {
   message: string = '';
   messageFromChild: string = '';
+  messageChildObservable: string = '';
 
-  constructor(private service: MyServiceService) {}
+  constructor(
+    private service: MyServiceService,
+    private obs: ObservablesService
+  ) {}
 
   get parentMessage(): string {
     return this.service.parentMessage;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.obs.messageFromChild.subscribe(
+      (value) => (this.messageChildObservable = value)
+    );
+  }
 
   setMessage(): void {
     this.message = 'parent is using input property';
@@ -27,6 +36,11 @@ export class ParentComponent implements OnInit {
   }
   setMessageFromService(): void {
     this.service.setChildMessage('parent is using services');
+    this.message = '';
+  }
+  setMessageObservable(): void {
+    this.obs.setMessageFromParent('Parent is using observables');
+    this.service.setChildMessage('');
     this.message = '';
   }
 }

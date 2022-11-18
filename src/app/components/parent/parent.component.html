@@ -1,12 +1,17 @@
 <section class="container parent">
   <div class="row">
     <h1>Parent</h1>
-    <h2>Message: {{ parentMessage || messageFromChild | uppercase }}</h2>
+    <h2>
+      Message:
+      {{
+        parentMessage || messageFromChild || messageChildObservable | uppercase
+      }}
+    </h2>
   </div>
   <div class="row parent__buttons">
     <button (click)="setMessageFromService()">Use Service</button
     ><button (click)="setMessage()">Use input</button
-    ><button>Use Observable</button>
+    ><button (click)="setMessageObservable()">Use Observable</button>
   </div>
   <app-child
     [messageFromParent]="message"
